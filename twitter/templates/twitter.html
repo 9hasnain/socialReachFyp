@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter Analysis</title>
+</head>
+<body>
+<p>Positive  {{data.0}}</p>
+<p> Negative  {{data.1}}</p>
+<p>Neutral {{data.2}}</p>
+
+  <div id="container"></div>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Sentiment Analysis of Twitter'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Sentiments',
+        colorByPoint: true,
+        data: [{
+            name: 'Positive',
+            y: {{data.0}},
+	    color:'#00ff00',
+
+            selected: true
+        }, {
+            name: 'Negative',
+
+            y: {{data.1}},
+	    color:'#FF0000'
+        }, {
+            name: 'Neutral',
+
+            y: {{data.2}},
+	    color:'#ADD8E6'
+        }]
+    }]
+});
+  </script>
+</body>
+</html>
